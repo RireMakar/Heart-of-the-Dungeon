@@ -1,0 +1,10 @@
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\SDL.dll
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Heart of the Dungeon.exe
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Heart of the Dungeon.pdb
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Lidgren.Network.dll
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\MonoGame.Framework.dll
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\OpenTK.dll
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Tao.Sdl.dll
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\obj\x86\Debug\Heart of the Dungeon.csprojResolveAssemblyReference.cache
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\obj\x86\Debug\Heart of the Dungeon.exe
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart of the Dungeon\Heart of the Dungeon\obj\x86\Debug\Heart of the Dungeon.pdb
