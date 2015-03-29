@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Heart_of_the_Dungeon
 {
-    class DrawAll
+    class ControlPanel
     {
     }
 }
