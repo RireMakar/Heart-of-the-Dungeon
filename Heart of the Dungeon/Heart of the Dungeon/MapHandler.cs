@@ -55,7 +55,7 @@ namespace Heart_of_the_Dungeon
                 map.Name = fileName;
                 int[,] mapData = new int[32, 24];
                 int row = 0;
-                while((line = streamReader.ReadLine()) != null)
+                while ((line = streamReader.ReadLine()) != null)
                 {
                     string[] lineArr = line.Split(',');
                     int col = 0;
