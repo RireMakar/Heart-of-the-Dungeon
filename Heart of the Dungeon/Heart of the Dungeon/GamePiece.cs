@@ -13,22 +13,29 @@ namespace Heart_of_the_Dungeon
 {
     class GamePiece
     {
+        #region Attributes
         // attributes
         protected Rectangle rectangle;
         protected Texture2D texture;
         protected bool isVisible;
         protected bool isSolid;
+        #endregion Attributes
 
-        public virtual GamePiece(Texture2D text, Rectangle rect)
+        #region Constructor
+        // constructor
+        public GamePiece(Texture2D text, Rectangle rect)
         {
             texture = text;
             rectangle = rect;
         }
+        #endregion Constructor
 
+        #region Methods
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (isVisible)
                 spriteBatch.Draw(texture, rectangle, Color.White);
         }
+        #endregion Methods
     }
 }

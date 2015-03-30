@@ -37,15 +37,17 @@
   <ItemGroup>
     <Compile Include="ControlPanel.cs" />
     <Compile Include="Creep.cs" />
-    <Compile Include="DrawPieces.cs" />
+    <Compile Include="DrawGame.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GamePiece.cs" />
     <Compile Include="Ghoul.cs" />
+    <Compile Include="GlobalSettings.cs" />
     <Compile Include="Heart.cs" />
     <Compile Include="Hero.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Mage.cs" />
-    <Compile Include="MapReader.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="MapHandler.cs" />
     <Compile Include="Minotaur.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="MoveableGamePiece.cs" />
@@ -81,7 +83,11 @@
     </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Content\background.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Creep.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -11,24 +11,29 @@ using Microsoft.Xna.Framework.GamerServices;
 
 namespace Heart_of_the_Dungeon
 {
-    class DrawPieces
+    class DrawGame
     {
+        #region Attributes
         // attributes
-        List<Tile> tileList;
+        List<Map> mapList;
         List<MoveableGamePiece> moveableGamePieceList;
+        #endregion Attributes
 
+        #region Constructor
         // constructor
-        public DrawPieces(List<Tile> tL, List<MoveableGamePiece> mGPL)
+        public DrawGame(List<Map> mL, List<MoveableGamePiece> mGPL)
         {
-            tileList = tL;
+            mapList = mL;
             moveableGamePieceList = mGPL;
         }
+        #endregion Constructor
 
-        public void DrawTiles(SpriteBatch spriteBatch)
+        #region Methods
+        public void DrawMap(SpriteBatch spriteBatch)
         {
-            foreach (Tile t in tileList)
+            foreach (Map m in mapList)
             {
-                t.Draw(spriteBatch);
+                m.Draw(spriteBatch);
             }
         }
         
@@ -39,6 +44,6 @@ namespace Heart_of_the_Dungeon
                 mgp.Draw(spriteBatch);
             }
         }
-
+        #endregion Methods
     }
 }
