@@ -33,7 +33,7 @@ namespace Heart_of_the_Dungeon
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (isVisible)
-                spriteBatch.Draw(texture, initialRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(texture, rectangle, sourceRectangle, Color.White);
         }
         #endregion Methods
     }

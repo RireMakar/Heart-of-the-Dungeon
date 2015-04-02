@@ -19,13 +19,7 @@ namespace Heart_of_the_Dungeon
         private int[,] mapData;
         private Texture2D floortiles;
         private Texture2D walltiles;
-        private Texture2D spawn;
-        private Texture2D enemySpawn;
-        private Texture2D heart;
         private int[,] tileType;
-        private bool[,] wallMap;
-        private bool[,] spawnMap;
-        private bool[,] enemySpawnMap;
         Random rand;
         #endregion Attributes
 
@@ -48,48 +42,15 @@ namespace Heart_of_the_Dungeon
                 mapData = value;
             }
         }
-
-        public bool[,] WallMap
-        {
-            get { return wallMap; }
-            set
-            {
-                wallMap = value;
-            }
-        }
-
-        public bool[,] SpawnMap
-        {
-            get { return spawnMap; }
-            set
-            {
-                spawnMap = value;
-            }
-        }
-
-        public bool[,] EnemySpawnMap
-        {
-            get { return enemySpawnMap; }
-            set
-            {
-                enemySpawnMap = value;
-            }
-        }
         #endregion Properties
 
         #region Constructor
         // constructor
-        public Map()
+        public Map(Texture2D ft, Texture2D wt) 
         {
-            floortiles = GlobalVariables.textureDictionary["floortiles"];
-            walltiles = GlobalVariables.textureDictionary["walltiles"];
-            spawn = GlobalVariables.textureDictionary["spawn"];
-            enemySpawn = GlobalVariables.textureDictionary["enemySpawn"];
-            heart = GlobalVariables.textureDictionary["heart"];
+            floortiles = ft;
+            walltiles = wt;
             rand = new Random();
-            wallMap = new bool[32, 24];
-            spawnMap = new bool[32, 24];
-            enemySpawnMap = new bool[32, 24];
             tileType = new int[32, 24];
             for (int i = 0; i < 32; i++)
             {
@@ -97,7 +58,8 @@ namespace Heart_of_the_Dungeon
                 {
                     tileType[i, j] = rand.Next(3);
                 }
-            }            
+            }
+            
         }
         #endregion Constructor
 
@@ -113,18 +75,6 @@ namespace Heart_of_the_Dungeon
                     else if (mapData[i,j] == 0)
                     {
                         spriteBatch.Draw(floortiles, new Rectangle(i * 32, j * 32, 32, 32), new Rectangle(tileType[i,j] * 32, 0, 32, 32), Color.White);
-                    }
-                    else if (mapData[i,j] == 53)
-                    {
-                        spriteBatch.Draw(spawn, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
-                    }
-                    else if (mapData[i, j] == 54)
-                    {
-                        spriteBatch.Draw(enemySpawn, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
-                    }
-                    else if (mapData[i, j] == 55)
-                    {
-                        spriteBatch.Draw(heart, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
                     }
                     else if (mapData[i,j] % 13 == 0)
                     {
