@@ -11,22 +11,27 @@ using Microsoft.Xna.Framework.GamerServices;
 
 namespace Heart_of_the_Dungeon
 {
-    class GamePiece
+    abstract class GamePiece
     {
         #region Attributes
         // attributes
-        protected Rectangle rectangle;
+        protected Rectangle initialRectangle;
         protected Texture2D texture;
         protected bool isVisible;
         protected bool isSolid;
+        protected int posX;
+        protected int posY;
         #endregion Attributes
 
         #region Constructor
         // constructor
         public GamePiece(Texture2D text, Rectangle rect)
-        {
+        { 
             texture = text;
-            rectangle = rect;
+            initialRectangle = rect;
+            posX = rect.X;
+            posY = rect.Y;
+            isVisible = true;
         }
         #endregion Constructor
 
@@ -34,7 +39,7 @@ namespace Heart_of_the_Dungeon
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (isVisible)
-                spriteBatch.Draw(texture, rectangle, Color.White);
+                spriteBatch.Draw(texture, new Rectangle(posX * 32, posY * 32, texture.Width, texture.Height), Color.White);
         }
         #endregion Methods
     }

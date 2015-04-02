@@ -17,8 +17,6 @@ namespace Heart_of_the_Dungeon
         #region Attributes
         // attributes
         private List<Map> mapList;
-        private Texture2D floortiles;
-        private Texture2D walltiles;
         #endregion Attributes
 
         #region Properties
@@ -35,10 +33,8 @@ namespace Heart_of_the_Dungeon
 
         #region Constructor
         // constructor
-        public MapHandler(Texture2D ft, Texture2D wt)
+        public MapHandler()
         {
-            floortiles = ft;
-            walltiles = wt;
             mapList = new List<Map>();
         }
         #endregion Constructor
@@ -51,13 +47,13 @@ namespace Heart_of_the_Dungeon
             {
                 StreamReader streamReader = new StreamReader(fileName);
                 string line = "";
-                Map map = new Map(floortiles, walltiles);
+                Map map = new Map();
                 map.Name = fileName;
                 int[,] mapData = new int[32, 24];
                 int row = 0;
                 while ((line = streamReader.ReadLine()) != null)
                 {
-                    string[] lineArr = line.Split(',');
+                    string[] lineArr = line.Split(' ');
                     int col = 0;
                     foreach (string s in lineArr)
                     {
@@ -67,6 +63,29 @@ namespace Heart_of_the_Dungeon
                     row++;
                 }
                 map.MapData = mapData;
+
+                for (int i = 0; i < 32; i++)
+                {
+                    for (int j = 0; j < 24; j++)
+                    {
+                        if (map.MapData[i, j] == 53)
+                        {
+
+                        }
+                        else if (map.MapData[i, j] == 54)
+                        {
+
+                        }
+                        else if (map.MapData[i, j] == 55)
+                        {
+                            
+                        }
+                        else if (map.MapData[i, j] > 0 && mapData[i, j] < 53)
+                        {
+                            map.WallMap[i, j] = true;
+                        }
+                    }
+                }
                 mapList.Add(map);
             }
             catch (IOException ioe)
