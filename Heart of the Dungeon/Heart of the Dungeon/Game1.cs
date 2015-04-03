@@ -18,23 +18,10 @@ namespace Heart_of_the_Dungeon
 
         #region Attributes
         // attributes
-        List<Map> mapList;
-        List<MoveableGamePiece> moveableGamePieceList;
-        List<Hero> heroList;
-        List<Monster> monsterList;
-        public Texture2D creep;
-        public Texture2D ghoul;
-        public Texture2D skarch;
-        public Texture2D scorp;
-        public Texture2D minotaur;
-        public Texture2D knight;
-        public Texture2D mage;
-        public Texture2D thief;
-        public Texture2D floortiles;
-        public Texture2D walltiles;
-        public Texture2D background;
+        private List<Map> mapList;
+        private Stack<GameState> stateStack;
+
         Random rand;
-        DrawGame drawGame;
         #endregion Attributes
 
         // temp attributes (for testing, delete when done)
@@ -47,19 +34,19 @@ namespace Heart_of_the_Dungeon
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-        #endregion Constructor
+        #endregion Constructorw
 
         #region OneTimeMethods
         protected override void Initialize()
         {
-            GlobalSettings.IsFullscreen = false;
-            GlobalSettings.ScreenHeight = 768;
-            GlobalSettings.ScreenWidth = 1024;
+            GlobalVariables.IsFullscreen = false;
+            GlobalVariables.ScreenHeight = 768;
+            GlobalVariables.ScreenWidth = 1024;
 
 
-            graphics.PreferredBackBufferWidth = GlobalSettings.ScreenWidth;
-            graphics.PreferredBackBufferHeight = GlobalSettings.ScreenHeight;
-            graphics.IsFullScreen = GlobalSettings.IsFullscreen;
+            graphics.PreferredBackBufferWidth = GlobalVariables.ScreenWidth;
+            graphics.PreferredBackBufferHeight = GlobalVariables.ScreenHeight;
+            graphics.IsFullScreen = GlobalVariables.IsFullscreen;
             graphics.ApplyChanges();
 
             IsMouseVisible = true;
@@ -67,9 +54,8 @@ namespace Heart_of_the_Dungeon
             rand = new Random();
 
             mapList = new List<Map>();
-            moveableGamePieceList = new List<MoveableGamePiece>();
-            heroList = new List<Hero>();
-            monsterList = new List<Monster>();
+
+            stateStack = new Stack<GameState>();
 
             base.Initialize();
         }
@@ -79,24 +65,26 @@ namespace Heart_of_the_Dungeon
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            creep = Content.Load<Texture2D>("Creep");
-            ghoul = Content.Load<Texture2D>("Ghoul");
-            skarch = Content.Load<Texture2D>("Skarch");
-            scorp = Content.Load<Texture2D>("Scorp");
-            minotaur = Content.Load<Texture2D>("Minotaur");
-            knight = Content.Load<Texture2D>("Knight");
-            mage = Content.Load<Texture2D>("Mage");
-            thief = Content.Load<Texture2D>("Thief");
-            floortiles = Content.Load<Texture2D>("floortiles");
-            walltiles = Content.Load<Texture2D>("walltiles");
-            background = Content.Load<Texture2D>("background");
+            GlobalVariables.textureDictionary = new Dictionary<string, Texture2D>();
 
-            MapHandler mapHandler = new MapHandler(floortiles, walltiles);
+            GlobalVariables.mainFont = Content.Load<SpriteFont>("mainFont");
+
+            GlobalVariables.textureDictionary.Add("creep", Content.Load<Texture2D>("Creep"));
+            GlobalVariables.textureDictionary.Add("ghoul", Content.Load<Texture2D>("Ghoul"));
+            GlobalVariables.textureDictionary.Add("skarch", Content.Load<Texture2D>("Skarch"));
+            GlobalVariables.textureDictionary.Add("scorp", Content.Load<Texture2D>("Scorp"));
+            GlobalVariables.textureDictionary.Add("minotaur", Content.Load<Texture2D>("Minotaur"));
+            GlobalVariables.textureDictionary.Add("knight", Content.Load<Texture2D>("Knight"));
+            GlobalVariables.textureDictionary.Add("mage", Content.Load<Texture2D>("Mage"));
+            GlobalVariables.textureDictionary.Add("thief", Content.Load<Texture2D>("Thief"));
+            GlobalVariables.textureDictionary.Add("floortiles", Content.Load<Texture2D>("floortiles"));
+            GlobalVariables.textureDictionary.Add("walltiles", Content.Load<Texture2D>("wallTiles"));
+            GlobalVariables.textureDictionary.Add("background", Content.Load<Texture2D>("background"));
+
+            MapHandler mapHandler = new MapHandler();
             mapHandler.LoadMap("Maps\\Map01.txt");
             mapList.Add(mapHandler.MapList[0]);
-            
-
-            drawGame = new DrawGame(mapList, moveableGamePieceList);
+            stateStack.Push(new GameScreen(mapList[0]));
         }
 
         protected override void UnloadContent()
@@ -111,6 +99,7 @@ namespace Heart_of_the_Dungeon
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            stateStack.Peek().Update();
 
             base.Update(gameTime);
         }
@@ -120,8 +109,7 @@ namespace Heart_of_the_Dungeon
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
-            //spriteBatch.Draw(background, new Rectangle(0, 0, GlobalSettings.ScreenWidth, GlobalSettings.ScreenHeight), Color.White);  **NEEDS ACTUAL BACKGROUND**
-            drawGame.DrawMap(spriteBatch);
+            stateStack.Peek().Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

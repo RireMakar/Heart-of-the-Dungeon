@@ -20,6 +20,7 @@ namespace Heart_of_the_Dungeon
         private Texture2D floortiles;
         private Texture2D walltiles;
         private int[,] tileType;
+        private List<Wall> wallList;
         Random rand;
         #endregion Attributes
 
@@ -42,15 +43,26 @@ namespace Heart_of_the_Dungeon
                 mapData = value;
             }
         }
+
+        public List<Wall> WallList
+        {
+            get { return wallList; }
+            set
+            {
+                wallList = value;
+            }
+        }
         #endregion Properties
 
         #region Constructor
         // constructor
-        public Map(Texture2D ft, Texture2D wt) 
+        public Map(int[,] mpDt) 
         {
-            floortiles = ft;
-            walltiles = wt;
+            floortiles = GlobalVariables.textureDictionary["floortiles"];
+            walltiles = GlobalVariables.textureDictionary["walltiles"];
+            mapData = mpDt;
             rand = new Random();
+            
             tileType = new int[32, 24];
             for (int i = 0; i < 32; i++)
             {
@@ -59,7 +71,18 @@ namespace Heart_of_the_Dungeon
                     tileType[i, j] = rand.Next(3);
                 }
             }
-            
+
+            wallList = new List<Wall>();
+            for (int i = 0; i < 32; i++)
+            {
+                for (int j = 0; j < 24; j++)
+                {
+                    if (mapData[i, j] > 0 && mapData[i,j] < 53)
+                    {
+                        wallList.Add(new Wall(walltiles, new Rectangle(i * 32, j * 32, 32, 32)));
+                    }
+                }
+            }
         }
         #endregion Constructor
 
@@ -90,3 +113,5 @@ namespace Heart_of_the_Dungeon
         #endregion Methods
     }
 }
+
+

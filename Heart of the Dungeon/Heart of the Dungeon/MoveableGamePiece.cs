@@ -16,7 +16,7 @@ namespace Heart_of_the_Dungeon
         public MoveableGamePiece(Texture2D text, Rectangle rect)
             : base(text, rect)
         {
-            isSolid = true;
+
         }
     }
 }

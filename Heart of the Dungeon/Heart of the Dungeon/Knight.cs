@@ -13,10 +13,13 @@ namespace Heart_of_the_Dungeon
 {
     class Knight : Hero
     {
-        public Knight(Texture2D text, Rectangle rect)
-            : base(text, rect)
-        {
+        // attributes
+        
 
+        public Knight(Texture2D text, Rectangle rect, List<Wall> wallList)
+            : base(text, rect, wallList)
+        {
+            
         }
     }
 }

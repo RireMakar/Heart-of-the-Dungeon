@@ -18,8 +18,17 @@ namespace Heart_of_the_Dungeon
         protected Rectangle rectangle;
         protected Texture2D texture;
         protected bool isVisible;
-        protected bool isSolid;
         #endregion Attributes
+        
+        // properties
+        public Rectangle Rectangle
+        {
+            get { return rectangle; }
+            set
+            {
+                rectangle = value;
+            }
+        }
 
         #region Constructor
         // constructor
@@ -27,6 +36,7 @@ namespace Heart_of_the_Dungeon
         {
             texture = text;
             rectangle = rect;
+            isVisible = true;
         }
         #endregion Constructor
 

@@ -17,8 +17,6 @@ namespace Heart_of_the_Dungeon
         #region Attributes
         // attributes
         private List<Map> mapList;
-        private Texture2D floortiles;
-        private Texture2D walltiles;
         #endregion Attributes
 
         #region Properties
@@ -35,10 +33,8 @@ namespace Heart_of_the_Dungeon
 
         #region Constructor
         // constructor
-        public MapHandler(Texture2D ft, Texture2D wt)
+        public MapHandler()
         {
-            floortiles = ft;
-            walltiles = wt;
             mapList = new List<Map>();
         }
         #endregion Constructor
@@ -51,8 +47,7 @@ namespace Heart_of_the_Dungeon
             {
                 StreamReader streamReader = new StreamReader(fileName);
                 string line = "";
-                Map map = new Map(floortiles, walltiles);
-                map.Name = fileName;
+                
                 int[,] mapData = new int[32, 24];
                 int row = 0;
                 while ((line = streamReader.ReadLine()) != null)
@@ -66,7 +61,8 @@ namespace Heart_of_the_Dungeon
                     }
                     row++;
                 }
-                map.MapData = mapData;
+                Map map = new Map(mapData);
+                map.Name = fileName;
                 mapList.Add(map);
             }
             catch (IOException ioe)

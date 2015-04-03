@@ -13,8 +13,8 @@ namespace Heart_of_the_Dungeon
 {
     class Thief : Hero
     {
-        public Thief(Texture2D text, Rectangle rect)
-            : base(text, rect)
+        public Thief(Texture2D text, Rectangle rect, List<Wall> wallList)
+            : base(text, rect, wallList)
         {
 
         }
