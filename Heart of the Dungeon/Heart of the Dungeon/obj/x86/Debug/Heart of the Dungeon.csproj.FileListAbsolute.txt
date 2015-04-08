@@ -30,3 +30,5 @@ D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart o
 D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Tao.Sdl.dll
 D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\background.xnb
 D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\mainFont.xnb
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\targetImage.xnb
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\spawnSpace.xnb

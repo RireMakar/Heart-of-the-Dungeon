@@ -16,7 +16,55 @@ namespace Heart_of_the_Dungeon
         public Mage(Texture2D text, Rectangle rect, List<Wall> wallList)
             : base(text, rect, wallList)
         {
+            name = "mage";
+            damage = 1;
+            health = 15;
+            attackGrid = new AttackSpace[5, 5] {
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y - 64, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y - 64, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y - 64, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y - 64, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y - 64, 32, 32)),},  
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y - 32, 32, 32)), 
+                                                 null, null, null,
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y - 32, 32, 32))},
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y, 32, 32)),
+                                                 null, null, null,
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y, 32, 32))},
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y + 32, 32, 32)),
+                                                 null, null, null,
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y + 32, 32, 32))},
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y + 64, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y + 64, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y + 64, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y + 64, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y + 64, 32, 32))}
+                                                };
+        }
 
+        public override void UpdateAttackGrid()
+        {
+            attackGrid = new AttackSpace[5, 5] {
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y - 64, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y - 64, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y - 64, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y - 64, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y - 64, 32, 32)),},
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y - 32, 32, 32)), 
+                                                 null, null, null,
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y - 32, 32, 32))},
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y, 32, 32)),
+                                                 null, null, null,
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y, 32, 32))},
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y + 32, 32, 32)),
+                                                 null, null, null,
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y + 32, 32, 32))},
+                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y + 64, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y + 64, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y + 64, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y + 64, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y + 64, 32, 32))}
+                                                };
         }
     }
 }

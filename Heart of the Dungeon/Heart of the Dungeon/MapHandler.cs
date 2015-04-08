@@ -52,7 +52,7 @@ namespace Heart_of_the_Dungeon
                 int row = 0;
                 while ((line = streamReader.ReadLine()) != null)
                 {
-                    string[] lineArr = line.Split(',');
+                    string[] lineArr = line.Split(' ');
                     int col = 0;
                     foreach (string s in lineArr)
                     {

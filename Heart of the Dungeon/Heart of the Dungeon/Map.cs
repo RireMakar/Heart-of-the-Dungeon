@@ -19,6 +19,7 @@ namespace Heart_of_the_Dungeon
         private int[,] mapData;
         private Texture2D floortiles;
         private Texture2D walltiles;
+        private Texture2D spawnSpace;
         private int[,] tileType;
         private List<Wall> wallList;
         Random rand;
@@ -60,6 +61,7 @@ namespace Heart_of_the_Dungeon
         {
             floortiles = GlobalVariables.textureDictionary["floortiles"];
             walltiles = GlobalVariables.textureDictionary["walltiles"];
+            spawnSpace = GlobalVariables.textureDictionary["spawnSpace"];
             mapData = mpDt;
             rand = new Random();
             
@@ -98,6 +100,11 @@ namespace Heart_of_the_Dungeon
                     else if (mapData[i,j] == 0)
                     {
                         spriteBatch.Draw(floortiles, new Rectangle(i * 32, j * 32, 32, 32), new Rectangle(tileType[i,j] * 32, 0, 32, 32), Color.White);
+                    }
+                    else if (mapData[i, j] == 54)
+                    {
+                        spriteBatch.Draw(floortiles, new Rectangle(i * 32, j * 32, 32, 32), new Rectangle(tileType[i, j] * 32, 0, 32, 32), Color.White);
+                        spriteBatch.Draw(spawnSpace, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
                     }
                     else if (mapData[i,j] % 13 == 0)
                     {

@@ -80,6 +80,8 @@ namespace Heart_of_the_Dungeon
             GlobalVariables.textureDictionary.Add("floortiles", Content.Load<Texture2D>("floortiles"));
             GlobalVariables.textureDictionary.Add("walltiles", Content.Load<Texture2D>("wallTiles"));
             GlobalVariables.textureDictionary.Add("background", Content.Load<Texture2D>("background"));
+            GlobalVariables.textureDictionary.Add("targetImage", Content.Load<Texture2D>("targetImage"));
+            GlobalVariables.textureDictionary.Add("spawnSpace", Content.Load<Texture2D>("spawnSpace"));
 
             MapHandler mapHandler = new MapHandler();
             mapHandler.LoadMap("Maps\\Map01.txt");

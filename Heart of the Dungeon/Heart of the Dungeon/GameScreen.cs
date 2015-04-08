@@ -21,15 +21,16 @@ namespace Heart_of_the_Dungeon
         private KeyboardState oldState;
         private SpriteFont mainFont;
         private int movePoints;
+        private string state;
 
         // constructor
         public GameScreen(Map mp)
         {
             map = mp;
             mainFont = GlobalVariables.mainFont;
-            knight = new Knight(GlobalVariables.textureDictionary["knight"], new Rectangle(0, 0, 32, 32), map.WallList);
-            thief = new Thief(GlobalVariables.textureDictionary["thief"], new Rectangle(0, 0, 0, 0), map.WallList);
-            mage = new Mage(GlobalVariables.textureDictionary["mage"], new Rectangle(0, 0, 0, 0), map.WallList);
+            knight = new Knight(GlobalVariables.textureDictionary["knight"], new Rectangle(25 * 32, 12 * 32, 32, 32), map.WallList);
+            thief = new Thief(GlobalVariables.textureDictionary["thief"], new Rectangle(25 * 32, 11 * 32, 32, 32), map.WallList);
+            mage = new Mage(GlobalVariables.textureDictionary["mage"], new Rectangle(25 * 32, 10 * 32, 32, 32), map.WallList);
             monsterList = new List<Monster>();
             currentTurn = Turn.Knight;
             oldState = Keyboard.GetState();
@@ -53,35 +54,29 @@ namespace Heart_of_the_Dungeon
                     }
                 case Turn.Knight:
                     {
-                        if (newState.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R))
-                            knight.Roll();
-                        if (newState.IsKeyDown(Keys.W) && oldState.IsKeyUp(Keys.W) && knight.MovePoints > 0)
-                        {
-                            knight.Move(3);
-                        }
-                        if (newState.IsKeyDown(Keys.D) && oldState.IsKeyUp(Keys.D) && knight.MovePoints > 0)
-                        {
-                            knight.Move(0);
-                        }
-                        if (newState.IsKeyDown(Keys.S) && oldState.IsKeyUp(Keys.S) && knight.MovePoints > 0)
-                        {
-                            knight.Move(1);
-                        }
-                        if (newState.IsKeyDown(Keys.A) && oldState.IsKeyUp(Keys.A) && knight.MovePoints > 0)
-                        {
-                            knight.Move(2);
-                        }
+                        knight.Update(newState, oldState);
                         movePoints = knight.MovePoints;
+                        state = knight.GetState();
+                        if (movePoints == 0)
+                            this.NextTurn();
                         break;
                     }
                 case Turn.Thief:
                     {
-                        
+                        thief.Update(newState, oldState);
+                        movePoints = thief.MovePoints;
+                        state = thief.GetState();
+                        if (movePoints == 0)
+                            this.NextTurn();
                         break;
                     }
                 case Turn.Mage:
                     {
-                        
+                        mage.Update(newState, oldState);
+                        movePoints = mage.MovePoints;
+                        state = mage.GetState();
+                        if (movePoints == 0)
+                            this.NextTurn();
                         break;
                     }
             }
@@ -99,7 +94,7 @@ namespace Heart_of_the_Dungeon
             {
                 m.Draw(spriteBatch);
             }
-            spriteBatch.DrawString(mainFont, "Move Points: " + movePoints, new Vector2(32, 32), Color.White);
+            spriteBatch.DrawString(mainFont, "Move Points: " + movePoints + "   State: " + state, new Vector2(32, 32), Color.White);
         }
 
         private void NextTurn()
@@ -109,16 +104,19 @@ namespace Heart_of_the_Dungeon
                 case Turn.Dungeon:
                     {
                         currentTurn = Turn.Knight;
+                        knight.MovePoints = 0;
                         break;
                     }
                 case Turn.Knight:
                     {
                         currentTurn = Turn.Thief;
+                        thief.MovePoints = 0;
                         break;
                     }
                 case Turn.Thief:
                     {
                         currentTurn = Turn.Mage;
+                        mage.MovePoints = 0;
                         break;
                     }
                 case Turn.Mage:
