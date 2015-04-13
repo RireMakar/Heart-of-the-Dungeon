@@ -32,3 +32,28 @@ D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart o
 D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\mainFont.xnb
 D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\targetImage.xnb
 D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\spawnSpace.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\obj\x86\Debug\Heart of the Dungeon.exe
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\obj\x86\Debug\Heart of the Dungeon.pdb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\background.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\Creep.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\floortiles.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\Ghoul.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\Knight.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\Mage.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\Minotaur.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\Scorp.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\Skarch.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\Thief.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\walltiles.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\mainFont.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\targetImage.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\spawnSpace.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\dungeonImage.xnb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\SDL.dll
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Heart of the Dungeon.exe
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Heart of the Dungeon.pdb
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Lidgren.Network.dll
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\MonoGame.Framework.dll
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\OpenTK.dll
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Tao.Sdl.dll
+D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\obj\x86\Debug\Heart of the Dungeon.csprojResolveAssemblyReference.cache

@@ -28,6 +28,7 @@ namespace Heart_of_the_Dungeon
         protected int damage;
         protected int health;
         protected GameScreen gameScreen;
+        protected bool isAlive;
 
         // properties
         public int MovePoints
@@ -48,6 +49,10 @@ namespace Heart_of_the_Dungeon
             get { return currentState; }
             set { currentState = value; }
         }
+        public bool IsAlive
+        {
+            get { return isAlive; }
+        }
 
         // constructor
         public Hero(Texture2D text, Rectangle rect, GameScreen gS)
@@ -60,6 +65,7 @@ namespace Heart_of_the_Dungeon
             currentState = State.Move;
             currentGridSpaceX = 0;
             currentGridSpaceY = 0;
+            isAlive = true;
         }
 
         // methods
@@ -209,12 +215,44 @@ namespace Heart_of_the_Dungeon
                     }
                 case AttackState.Attacking:
                     {
+                        Rectangle attackRect = attackGrid[currentGridSpaceX, currentGridSpaceY].Rectangle;
+                        foreach (Hero h in gameScreen.HeroList)
+                        {
+                            if (attackRect.Intersects(h.Rectangle))
+                            {
+                                h.TakeDamage(damage);
+                            }
+                        }
+                        foreach (Monster m in gameScreen.MonsterList)
+                        {
+                            if (attackRect.Intersects(m.Rectangle))
+                            {
+                                m.TakeDamage();
+                            }
+                        }
                         movePoints = 0;
+                        currentAttackState = AttackState.Inactive;
                         break;
                     }
             }
         }
         public virtual void UpdateAttackGrid() { }
+
+        public virtual void TakeDamage(int dmg)
+        {
+            health--;
+            if (health <= 0)
+            {
+                this.Die();
+            }
+        }
+
+        public void Die()
+        {
+            isAlive = false;
+            isVisible = false;
+            rectangle = new Rectangle(0, 0, 0, 0);
+        }
 
         public virtual void Move(int direction)
         {

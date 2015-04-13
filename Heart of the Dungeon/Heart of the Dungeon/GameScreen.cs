@@ -124,13 +124,31 @@ namespace Heart_of_the_Dungeon
             spriteBatch.DrawString(mainFont, "Move Points: " + movePoints + "   State: " + state, new Vector2(32, 32), Color.White);
         }
 
+        private void EndGame()
+        {
+
+        }
+
         private void NextTurn()
         {
+            int lifeCount = 0;
+            foreach (Hero h in heroList)
+            {
+                if (h.IsAlive)
+                    lifeCount++;
+            }
+            if (lifeCount == 0)
+                this.EndGame();
             switch(currentTurn)
             {
                 case Turn.Dungeon:
                     {
-                        
+                        if (!knight.IsAlive)
+                        {
+                            currentTurn = Turn.Knight;
+                            this.NextTurn();
+                            return;
+                        }
                         currentTurn = Turn.Knight;
                         knight.MovePoints = 0;
                         knight.Roll();
@@ -138,6 +156,12 @@ namespace Heart_of_the_Dungeon
                     }
                 case Turn.Knight:
                     {
+                        if (!thief.IsAlive)
+                        {
+                            currentTurn = Turn.Thief;
+                            this.NextTurn();
+                            return;
+                        }
                         knight.CurrentState = Hero.State.Move; 
                         knight.CurrentAttackState = Hero.AttackState.Inactive;
                         knight.Attack();
@@ -148,6 +172,12 @@ namespace Heart_of_the_Dungeon
                     }
                 case Turn.Thief:
                     {
+                        if (!mage.IsAlive)
+                        {
+                            currentTurn = Turn.Mage;
+                            this.NextTurn();
+                            return;
+                        }
                         thief.CurrentState = Hero.State.Move; 
                         thief.CurrentAttackState = Hero.AttackState.Inactive;
                         thief.Attack();

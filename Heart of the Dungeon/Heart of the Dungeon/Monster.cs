@@ -30,6 +30,7 @@ namespace Heart_of_the_Dungeon
         protected int health;
         protected int maxMovePoints;
         protected GameScreen gameScreen;
+        protected bool isAlive;
 
 
         // properties
@@ -45,6 +46,10 @@ namespace Heart_of_the_Dungeon
         {
             get { return currentAttackState; }
             set { currentAttackState = value; }
+        }
+        public bool IsAlive
+        {
+            get { return isAlive; }
         }
 
         public Monster(Texture2D text, Rectangle rect, GameScreen gS)
@@ -130,6 +135,22 @@ namespace Heart_of_the_Dungeon
                     }
                 }
             }
+        }
+
+        public virtual void TakeDamage(int dmg)
+        {
+            health--;
+            if (health <= 0)
+            {
+                this.Die();
+            }
+        }
+
+        public void Die()
+        {
+            isAlive = false;
+            isVisible = false;
+            rectangle = new Rectangle(0, 0, 0, 0);
         }
 
         public virtual void Move(int direction)
