@@ -13,8 +13,8 @@ namespace Heart_of_the_Dungeon
 {
     class Ghoul : Monster
     {
-        public Ghoul(Texture2D text, Rectangle rect)
-            : base(text, rect)
+        public Ghoul(Texture2D text, Rectangle rect, GameScreen gS)
+            : base(text, rect, gS)
         {
 
         }

@@ -13,33 +13,13 @@ namespace Heart_of_the_Dungeon
 {
     class Mage : Hero
     {
-        public Mage(Texture2D text, Rectangle rect, List<Wall> wallList)
-            : base(text, rect, wallList)
+        public Mage(Texture2D text, Rectangle rect, GameScreen gS)
+            : base(text, rect, gS)
         {
             name = "mage";
             damage = 1;
             health = 15;
-            attackGrid = new AttackSpace[5, 5] {
-                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y - 64, 32, 32)), 
-                                                 new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y - 64, 32, 32)), 
-                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y - 64, 32, 32)),
-                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y - 64, 32, 32)),
-                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y - 64, 32, 32)),},  
-                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y - 32, 32, 32)), 
-                                                 null, null, null,
-                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y - 32, 32, 32))},
-                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y, 32, 32)),
-                                                 null, null, null,
-                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y, 32, 32))},
-                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y + 32, 32, 32)),
-                                                 null, null, null,
-                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y + 32, 32, 32))},
-                                                {new AttackSpace(new Rectangle(rectangle.X - 64, rectangle.Y + 64, 32, 32)), 
-                                                 new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y + 64, 32, 32)), 
-                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y + 64, 32, 32)),
-                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y + 64, 32, 32)),
-                                                 new AttackSpace(new Rectangle(rectangle.X + 64, rectangle.Y + 64, 32, 32))}
-                                                };
+            this.UpdateAttackGrid();
         }
 
         public override void UpdateAttackGrid()

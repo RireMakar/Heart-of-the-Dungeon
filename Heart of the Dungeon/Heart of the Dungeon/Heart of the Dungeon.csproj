@@ -39,6 +39,8 @@
     <Compile Include="ControlPanel.cs" />
     <Compile Include="Creep.cs" />
     <Compile Include="DrawGame.cs" />
+    <Compile Include="Dungeon.cs" />
+    <Compile Include="DungeonTarget.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GamePiece.cs" />
     <Compile Include="GameScreen.cs" />
@@ -134,6 +136,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\spawnSpace.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\dungeonImage.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

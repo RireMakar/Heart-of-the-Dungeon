@@ -16,25 +16,13 @@ namespace Heart_of_the_Dungeon
         // attributes
         
 
-        public Knight(Texture2D text, Rectangle rect, List<Wall> wallList)
-            : base(text, rect, wallList)
+        public Knight(Texture2D text, Rectangle rect, GameScreen gS)
+            : base(text, rect, gS)
         {
             name = "knight";
             damage = 2;
             health = 25;
-            attackGrid = new AttackSpace[5, 5] {  
-                                                {null, null, null, null, null},
-                                                {null, new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y - 32, 32, 32)), 
-                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y - 32, 32, 32)),
-                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y - 32, 32, 32)), null}, 
-                                                {null, new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y, 32, 32)),
-                                                 null, 
-                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y, 32, 32)) , null},
-                                                {null, new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y + 32, 32, 32)), 
-                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y + 32, 32, 32)),
-                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y + 32, 32, 32)), null},
-                                                {null, null, null, null, null}
-                                                };
+            this.UpdateAttackGrid();
         }
 
         public override void UpdateAttackGrid()

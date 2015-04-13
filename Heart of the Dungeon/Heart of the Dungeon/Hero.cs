@@ -15,19 +15,19 @@ namespace Heart_of_the_Dungeon
     {
         // attributes
         protected int movePoints;
-        protected List<Wall> wallList;
         protected bool isFirstTurn;
         protected AttackSpace[,] attackGrid;
-        protected enum State { Attack, Move, Ability };
+        public enum State { Attack, Move, Ability };
         protected State currentState;
-        protected enum AttackState { Inactive, Activating, Choosing, Attacking };
-        AttackState currentAttackState;
+        public enum AttackState { Inactive, Activating, Choosing, Attacking };
+        protected AttackState currentAttackState;
         protected string name;
         KeyboardState oldState, newState;
         protected int currentGridSpaceX;
         protected int currentGridSpaceY;
         protected int damage;
         protected int health;
+        protected GameScreen gameScreen;
 
         // properties
         public int MovePoints
@@ -38,12 +38,22 @@ namespace Heart_of_the_Dungeon
                 movePoints = value;
             }
         }
+        public AttackState CurrentAttackState
+        {
+            get { return currentAttackState; }
+            set { currentAttackState = value; }
+        }
+        public State CurrentState
+        {
+            get { return currentState; }
+            set { currentState = value; }
+        }
 
         // constructor
-        public Hero(Texture2D text, Rectangle rect, List<Wall> wL)
+        public Hero(Texture2D text, Rectangle rect, GameScreen gS)
             : base(text, rect)
         {
-            wallList = wL;
+            gameScreen = gS;
             movePoints = 0;
             isFirstTurn = true;
             currentAttackState = AttackState.Inactive;
@@ -58,13 +68,11 @@ namespace Heart_of_the_Dungeon
             newState = nS;
             oldState = oS;
 
-            if (movePoints == 0)
-                this.Roll();
             if (newState.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X) && movePoints != 0 && currentState == State.Attack)
                 currentAttackState = AttackState.Attacking;
             if (newState.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space))
             {
-                if (currentState == State.Move)
+                if (currentState == State.Move && movePoints > 0)
                 {
                     currentState = State.Attack;
                     currentAttackState = AttackState.Activating;
@@ -216,9 +224,25 @@ namespace Heart_of_the_Dungeon
                 case 0:
                     {
                         Rectangle testRectangle = new Rectangle(rectangle.X + 32, rectangle.Y, rectangle.Width, rectangle.Height);
-                        foreach (Wall w in wallList)
+                        foreach (Wall w in gameScreen.WallList)
                         {
                             if (w.Rectangle.Intersects(testRectangle))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+                        foreach (Hero h in gameScreen.HeroList)
+                        {
+                            if (h.Rectangle.Intersects(testRectangle))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+                        foreach (Monster m in gameScreen.MonsterList)
+                        {
+                            if (m.Rectangle.Intersects(testRectangle))
                             {
                                 collision = true;
                                 break;
@@ -233,9 +257,25 @@ namespace Heart_of_the_Dungeon
                 case 1:
                     {
                         Rectangle testRectangle = new Rectangle(rectangle.X, rectangle.Y + 32, rectangle.Width, rectangle.Height);
-                        foreach (Wall w in wallList)
+                        foreach (Wall w in gameScreen.WallList)
                         {
                             if (w.Rectangle.Intersects(testRectangle))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+                        foreach (Hero h in gameScreen.HeroList)
+                        {
+                            if (h.Rectangle.Intersects(testRectangle))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+                        foreach (Monster m in gameScreen.MonsterList)
+                        {
+                            if (m.Rectangle.Intersects(testRectangle))
                             {
                                 collision = true;
                                 break;
@@ -250,9 +290,25 @@ namespace Heart_of_the_Dungeon
                 case 2:
                     {
                         Rectangle testRectangle = new Rectangle(rectangle.X - 32, rectangle.Y, rectangle.Width, rectangle.Height);
-                        foreach (Wall w in wallList)
+                        foreach (Wall w in gameScreen.WallList)
                         {
                             if (w.Rectangle.Intersects(testRectangle))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+                        foreach (Hero h in gameScreen.HeroList)
+                        {
+                            if (h.Rectangle.Intersects(testRectangle))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+                        foreach (Monster m in gameScreen.MonsterList)
+                        {
+                            if (m.Rectangle.Intersects(testRectangle))
                             {
                                 collision = true;
                                 break;
@@ -267,9 +323,25 @@ namespace Heart_of_the_Dungeon
                 case 3:
                     {
                         Rectangle testRectangle = new Rectangle(rectangle.X, rectangle.Y - 32, rectangle.Width, rectangle.Height);
-                        foreach (Wall w in wallList)
+                        foreach (Wall w in gameScreen.WallList)
                         {
                             if (w.Rectangle.Intersects(testRectangle))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+                        foreach (Hero h in gameScreen.HeroList)
+                        {
+                            if (h.Rectangle.Intersects(testRectangle))
+                            {
+                                collision = true;
+                                break;
+                            }
+                        }
+                        foreach (Monster m in gameScreen.MonsterList)
+                        {
+                            if (m.Rectangle.Intersects(testRectangle))
                             {
                                 collision = true;
                                 break;
