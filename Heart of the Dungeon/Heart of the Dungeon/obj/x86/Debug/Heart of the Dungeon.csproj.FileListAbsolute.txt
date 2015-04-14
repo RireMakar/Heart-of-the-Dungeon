@@ -58,3 +58,7 @@ D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Hear
 D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Tao.Sdl.dll
 D:\Users\ajb2851\Documents\GitHub\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\obj\x86\Debug\Heart of the Dungeon.csprojResolveAssemblyReference.cache
 D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Content\dungeonImage.xnb
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Heart of the Dungeon.exe.manifest
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\bin\WindowsGL\Debug\Heart of the Dungeon.application
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\obj\x86\Debug\Heart of the Dungeon.exe.manifest
+D:\College\CSH\Major Project 1\Heart of the Dungeon\Heart-of-the-Dungeon\Heart of the Dungeon\Heart of the Dungeon\obj\x86\Debug\Heart of the Dungeon.application
