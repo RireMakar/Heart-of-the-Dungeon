@@ -14,7 +14,6 @@ namespace Heart_of_the_Dungeon
     class Monster : MoveableGamePiece
     {
         // attributes
-        // attributes
         protected int movePoints;
         protected bool isFirstTurn;
         protected AttackSpace[,] attackGrid;
@@ -71,11 +70,11 @@ namespace Heart_of_the_Dungeon
 
             if (movePoints == -1)
                 movePoints = maxMovePoints;
-            if (newState.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X) && movePoints != 0 && currentState == State.Attack)
+            if (newState.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X) && movePoints > 0 && currentState == State.Attack)
                 currentAttackState = AttackState.Attacking;
             if (newState.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space))
             {
-                if (currentState == State.Move)
+                if (currentState == State.Move && movePoints > 0)
                 {
                     currentState = State.Attack;
                     currentAttackState = AttackState.Activating;
@@ -139,7 +138,7 @@ namespace Heart_of_the_Dungeon
 
         public virtual void TakeDamage(int dmg)
         {
-            health--;
+            health -= dmg;
             if (health <= 0)
             {
                 this.Die();
@@ -319,18 +318,11 @@ namespace Heart_of_the_Dungeon
                 case AttackState.Activating:
                     {
                         this.UpdateAttackGrid();
-                        if (name == "mage")
-                        {
-                            attackGrid[0, 0].Toggle();
-                            currentGridSpaceX = 0;
-                            currentGridSpaceY = 0;
-                        }
-                        else
-                        {
-                            attackGrid[1, 1].Toggle();
-                            currentGridSpaceX = 1;
-                            currentGridSpaceY = 1;
-                        }
+                        
+                        attackGrid[1, 1].Toggle();
+                        currentGridSpaceX = 1;
+                        currentGridSpaceY = 1;
+                        
                         currentAttackState = AttackState.Choosing;
                         break;
                     }
@@ -365,7 +357,23 @@ namespace Heart_of_the_Dungeon
                     }
                 case AttackState.Attacking:
                     {
+                        Rectangle attackRect = attackGrid[currentGridSpaceX, currentGridSpaceY].Rectangle;
+                        foreach (Hero h in gameScreen.HeroList)
+                        {
+                            if (attackRect.Intersects(h.Rectangle))
+                            {
+                                h.TakeDamage(damage);
+                            }
+                        }
+                        foreach (Monster m in gameScreen.MonsterList)
+                        {
+                            if (attackRect.Intersects(m.Rectangle))
+                            {
+                                m.TakeDamage(damage);
+                            }
+                        }
                         movePoints = 0;
+                        currentAttackState = AttackState.Inactive;
                         break;
                     }
             }

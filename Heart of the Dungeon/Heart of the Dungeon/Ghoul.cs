@@ -16,7 +16,27 @@ namespace Heart_of_the_Dungeon
         public Ghoul(Texture2D text, Rectangle rect, GameScreen gS)
             : base(text, rect, gS)
         {
+            name = "ghoul";
+            damage = 1;
+            health = 2;
+            maxMovePoints = 2;
+        }
 
+        public override void UpdateAttackGrid()
+        {
+            attackGrid = new AttackSpace[5, 5] {  
+                                                {null, null, null, null, null},
+                                                {null, new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y - 32, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y - 32, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y - 32, 32, 32)), null}, 
+                                                {null, new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y, 32, 32)),
+                                                 null, 
+                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y, 32, 32)) , null},
+                                                {null, new AttackSpace(new Rectangle(rectangle.X - 32, rectangle.Y + 32, 32, 32)), 
+                                                 new AttackSpace(new Rectangle(rectangle.X, rectangle.Y + 32, 32, 32)),
+                                                 new AttackSpace(new Rectangle(rectangle.X + 32, rectangle.Y + 32, 32, 32)), null},
+                                                {null, null, null, null, null}
+                                                };
         }
     }
 }

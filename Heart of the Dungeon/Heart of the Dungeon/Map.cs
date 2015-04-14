@@ -22,7 +22,8 @@ namespace Heart_of_the_Dungeon
         private Texture2D spawnSpace;
         private int[,] tileType;
         private List<Wall> wallList;
-        Random rand;
+        private List<Rectangle> spawnList;
+        Random rand; 
         #endregion Attributes
 
         #region Properties
@@ -51,6 +52,15 @@ namespace Heart_of_the_Dungeon
             set
             {
                 wallList = value;
+            }
+        }
+
+        public List<Rectangle> SpawnList
+        {
+            get { return spawnList; }
+            set
+            {
+                spawnList = value;
             }
         }
         #endregion Properties
@@ -82,6 +92,18 @@ namespace Heart_of_the_Dungeon
                     if (mapData[i, j] > 0 && mapData[i,j] < 53)
                     {
                         wallList.Add(new Wall(walltiles, new Rectangle(i * 32, j * 32, 32, 32)));
+                    }
+                }
+            }
+
+            spawnList = new List<Rectangle>();
+            for (int i = 0; i < 32; i++)
+            {
+                for (int j = 0; j < 24; j++)
+                {
+                    if (mapData[i, j] == 54)
+                    {
+                        spawnList.Add(new Rectangle(i * 32, j * 32, 32, 32));
                     }
                 }
             }

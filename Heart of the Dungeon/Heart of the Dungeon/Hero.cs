@@ -53,6 +53,10 @@ namespace Heart_of_the_Dungeon
         {
             get { return isAlive; }
         }
+        public int Health
+        {
+            get { return health; }
+        }
 
         // constructor
         public Hero(Texture2D text, Rectangle rect, GameScreen gS)
@@ -77,7 +81,7 @@ namespace Heart_of_the_Dungeon
             if (newState.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X) && movePoints != 0 && currentState == State.Attack)
                 currentAttackState = AttackState.Attacking;
             if (newState.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space))
-            {
+            {   
                 if (currentState == State.Move && movePoints > 0)
                 {
                     currentState = State.Attack;
@@ -227,7 +231,7 @@ namespace Heart_of_the_Dungeon
                         {
                             if (attackRect.Intersects(m.Rectangle))
                             {
-                                m.TakeDamage();
+                                m.TakeDamage(damage);
                             }
                         }
                         movePoints = 0;
@@ -239,8 +243,8 @@ namespace Heart_of_the_Dungeon
         public virtual void UpdateAttackGrid() { }
 
         public virtual void TakeDamage(int dmg)
-        {
-            health--;
+        {   
+            health -= dmg;
             if (health <= 0)
             {
                 this.Die();

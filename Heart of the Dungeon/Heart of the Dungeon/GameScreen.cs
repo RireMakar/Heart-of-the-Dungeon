@@ -24,8 +24,8 @@ namespace Heart_of_the_Dungeon
         private SpriteFont mainFont;
         private int movePoints;
         private string state;
-        private int activeMonsterID;
         private List<Wall> wallList;
+        private List<Rectangle> spawnList;
 
         // properties
         public List<Monster> MonsterList
@@ -40,12 +40,17 @@ namespace Heart_of_the_Dungeon
         {
             get { return wallList; }
         }
+        public List<Rectangle> SpawnList
+        {
+            get { return spawnList; }
+        }
 
         // constructor
         public GameScreen(Map mp)
         {
             map = mp;
             wallList = map.WallList;
+            spawnList = map.SpawnList;
             mainFont = GlobalVariables.mainFont;
             knight = new Knight(GlobalVariables.textureDictionary["knight"], new Rectangle(25 * 32, 12 * 32, 32, 32), this);
             thief = new Thief(GlobalVariables.textureDictionary["thief"], new Rectangle(25 * 32, 11 * 32, 32, 32), this);
@@ -58,7 +63,6 @@ namespace Heart_of_the_Dungeon
             heroList.Add(mage);
             currentTurn = Turn.Dungeon;
             oldState = Keyboard.GetState();
-            activeMonsterID = 0;
         }
 
         // methods
@@ -74,18 +78,7 @@ namespace Heart_of_the_Dungeon
             {
                 case Turn.Dungeon:
                     {
-                        if (oldState.IsKeyUp(Keys.Q) && newState.IsKeyDown(Keys.Q))
-                        {
-                            activeMonsterID--;
-                            if (activeMonsterID < 0)
-                                activeMonsterID = monsterList.Count;
-                        }                            
-                        if (oldState.IsKeyUp(Keys.E) && newState.IsKeyDown(Keys.E))
-                        {
-                            activeMonsterID++;
-                            if (activeMonsterID >= monsterList.Count)
-                                activeMonsterID = 0;
-                        }                            
+                        dungeon.Update(newState, oldState);  
                         break;
                     }
                 case Turn.Knight:
@@ -121,7 +114,9 @@ namespace Heart_of_the_Dungeon
             thief.Draw(spriteBatch);
             mage.Draw(spriteBatch);
             dungeon.Draw(spriteBatch);
-            spriteBatch.DrawString(mainFont, "Move Points: " + movePoints + "   State: " + state, new Vector2(32, 32), Color.White);
+            spriteBatch.DrawString(mainFont, "Turn: " + currentTurn + "   Move Points: " + movePoints + "   State: " + state + 
+                "\nKnight Health: " + knight.Health + "  Thief Health: " + thief.Health + "  Mage Health: " + mage.Health +
+                "\nDungeon State: " + dungeon.CurrentState + "   Dungeon Spawn Points: " + dungeon.SpawnPoints, new Vector2(32, 16), Color.White);
         }
 
         private void EndGame()
@@ -143,6 +138,13 @@ namespace Heart_of_the_Dungeon
             {
                 case Turn.Dungeon:
                     {
+                        dungeon.CurrentState = Dungeon.State.Inactive;
+                        dungeon.Update(Keyboard.GetState(), Keyboard.GetState());
+                        foreach(Monster m in monsterList)
+                        {
+                            m.CurrentAttackState = Monster.AttackState.Inactive;
+                            m.Update(Keyboard.GetState(), Keyboard.GetState());
+                        }
                         if (!knight.IsAlive)
                         {
                             currentTurn = Turn.Knight;
@@ -192,6 +194,8 @@ namespace Heart_of_the_Dungeon
                         mage.CurrentAttackState = Hero.AttackState.Inactive;
                         mage.Attack();
                         currentTurn = Turn.Dungeon;
+                        dungeon.IsTurnStart = true;
+                        dungeon.CurrentState = Dungeon.State.Spawning;
                         break;
                     }
             }
