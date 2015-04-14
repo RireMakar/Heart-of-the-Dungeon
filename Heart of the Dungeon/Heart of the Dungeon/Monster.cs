@@ -50,7 +50,12 @@ namespace Heart_of_the_Dungeon
         {
             get { return isAlive; }
         }
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="rect"></param>
+        /// <param name="gS"></param>
         public Monster(Texture2D text, Rectangle rect, GameScreen gS)
             : base(text, rect)
         {
@@ -62,7 +67,11 @@ namespace Heart_of_the_Dungeon
             currentGridSpaceX = 0;
             currentGridSpaceY = 0;
         }
-
+        /// <summary>
+        /// Updates the monster
+        /// </summary>
+        /// <param name="nS"></param>
+        /// <param name="oS"></param>
         public void Update(KeyboardState nS, KeyboardState oS)
         {
             newState = nS;
@@ -119,7 +128,10 @@ namespace Heart_of_the_Dungeon
                     }
             }
         }
-
+        /// <summary>
+        /// Draws the monster
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
@@ -135,7 +147,10 @@ namespace Heart_of_the_Dungeon
                 }
             }
         }
-
+        /// <summary>
+        /// Makes the monster take damage
+        /// </summary>
+        /// <param name="dmg"></param>
         public virtual void TakeDamage(int dmg)
         {
             health -= dmg;
@@ -144,14 +159,19 @@ namespace Heart_of_the_Dungeon
                 this.Die();
             }
         }
-
+        /// <summary>
+        /// Kills the monster
+        /// </summary>
         public void Die()
         {
             isAlive = false;
             isVisible = false;
             rectangle = new Rectangle(0, 0, 0, 0);
         }
-
+        /// <summary>
+        /// Handles movement
+        /// </summary>
+        /// <param name="direction"></param>
         public virtual void Move(int direction)
         {
             bool collision = false;
@@ -291,12 +311,17 @@ namespace Heart_of_the_Dungeon
                     }
             }
         }
-
+        /// <summary>
+        /// Gets the current state of the monster
+        /// </summary>
+        /// <returns></returns>
         public string GetState()
         {
             return currentState.ToString();
         }
-
+        /// <summary>
+        /// Handles attacking
+        /// </summary>
         public void Attack()
         {
             switch (currentAttackState)
@@ -378,7 +403,9 @@ namespace Heart_of_the_Dungeon
                     }
             }
         }
-
+        /// <summary>
+        /// Updates the attack grid to reflect the current monster position
+        /// </summary>
         public virtual void UpdateAttackGrid() { }
     }
 }

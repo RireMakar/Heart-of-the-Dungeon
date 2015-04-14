@@ -41,7 +41,10 @@ namespace Heart_of_the_Dungeon
             set { currentState = value; }
         }
 
-        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="gS"></param>
         public Dungeon(GameScreen gS)
         {
             gameScreen = gS;
@@ -54,7 +57,11 @@ namespace Heart_of_the_Dungeon
             activeMonster = null;
             selectionSpace = new SelectionSpace(new Rectangle(seleSpaceX * 32, seleSpaceY * 32, 32, 32));
         }
-
+        /// <summary>
+        /// Updates the game
+        /// </summary>
+        /// <param name="nS"></param>
+        /// <param name="oS"></param>
         public void Update(KeyboardState nS, KeyboardState oS)
         {
             newState = nS;
@@ -149,7 +156,10 @@ namespace Heart_of_the_Dungeon
                     }
             }
         }
-
+        /// <summary>
+        /// Draws the game
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Monster m in gameScreen.MonsterList)
@@ -158,7 +168,11 @@ namespace Heart_of_the_Dungeon
             }
             selectionSpace.Draw(spriteBatch);
         }
-
+        /// <summary>
+        /// Handles monster spawns
+        /// </summary>
+        /// <param name="newState"></param>
+        /// <param name="oldState"></param>
         private void SpawnMonster(KeyboardState newState, KeyboardState oldState)
         {
             bool success = false;

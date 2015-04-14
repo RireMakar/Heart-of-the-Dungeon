@@ -23,11 +23,16 @@ namespace Heart_of_the_Dungeon
         private int[,] tileType;
         private List<Wall> wallList;
         private List<Rectangle> spawnList;
-        Random rand; 
+        Random rand;
+        private List<Heart> heartList;
         #endregion Attributes
 
         #region Properties
         // properties
+        public List<Heart> HeartList
+        {
+            get { return heartList; }
+        }
         public string Name
         {
             get { return name; }
@@ -67,6 +72,10 @@ namespace Heart_of_the_Dungeon
 
         #region Constructor
         // constructor
+        /// <summary>
+        /// Loads the data for the map from a text file
+        /// </summary>
+        /// <param name="mpDt"></param>
         public Map(int[,] mpDt) 
         {
             floortiles = GlobalVariables.textureDictionary["floortiles"];
@@ -107,11 +116,27 @@ namespace Heart_of_the_Dungeon
                     }
                 }
             }
+
+            heartList = new List<Heart>();
+            for (int i = 0; i < 32; i++)
+            {
+                for (int j = 0; j < 24; j++)
+                {
+                    if (mapData[i, j] == 55)
+                    {
+                        heartList.Add(new Heart(new Rectangle(i * 32, j * 32, 32, 32)));
+                    }
+                }
+            }
         }
         #endregion Constructor
 
         #region Methods
         // methods
+        /// <summary>
+        /// Draws the map
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {            
             for (int i = 0; i < 32; i++)
@@ -127,6 +152,10 @@ namespace Heart_of_the_Dungeon
                     {
                         spriteBatch.Draw(floortiles, new Rectangle(i * 32, j * 32, 32, 32), new Rectangle(tileType[i, j] * 32, 0, 32, 32), Color.White);
                         spriteBatch.Draw(spawnSpace, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                    }
+                    else if (mapData[i, j] == 55)
+                    {
+                        spriteBatch.Draw(floortiles, new Rectangle(i * 32, j * 32, 32, 32), new Rectangle(tileType[i, j] * 32, 0, 32, 32), Color.White);
                     }
                     else if (mapData[i,j] % 13 == 0)
                     {

@@ -73,6 +73,11 @@ namespace Heart_of_the_Dungeon
         }
 
         // methods
+        /// <summary>
+        /// Updates the hero
+        /// </summary>
+        /// <param name="nS"></param>
+        /// <param name="oS"></param>
         public void Update(KeyboardState nS, KeyboardState oS)
         {
             newState = nS;
@@ -127,6 +132,10 @@ namespace Heart_of_the_Dungeon
                     }
             }
         }
+        /// <summary>
+        /// Draws the hero
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
@@ -142,6 +151,10 @@ namespace Heart_of_the_Dungeon
                 }
             }            
         }
+        /// <summary>
+        /// Gets the state of the hero
+        /// </summary>
+        /// <returns></returns>
         public string GetState()
         {
             return currentState.ToString();
@@ -151,7 +164,9 @@ namespace Heart_of_the_Dungeon
             Random rand = new Random();
             movePoints = rand.Next(1, 7);
         }
-
+        /// <summary>
+        /// Handles the attacking of the hero
+        /// </summary>
         public void Attack()
         {            
             switch (currentAttackState)
@@ -234,14 +249,28 @@ namespace Heart_of_the_Dungeon
                                 m.TakeDamage(damage);
                             }
                         }
+                        foreach (Heart h in gameScreen.HeartList)
+                        {
+                            if (attackRect.Intersects(h.Rectangle))
+                            {
+                                h.Destroy();
+                            }
+                        }
                         movePoints = 0;
                         currentAttackState = AttackState.Inactive;
                         break;
                     }
             }
         }
+        /// <summary>
+        /// Updates the attack grid to reflect the current position
+        /// </summary>
         public virtual void UpdateAttackGrid() { }
 
+        /// <summary>
+        /// Handles the hero taking a variable amount of damage
+        /// </summary>
+        /// <param name="dmg"></param>
         public virtual void TakeDamage(int dmg)
         {   
             health -= dmg;
@@ -250,14 +279,19 @@ namespace Heart_of_the_Dungeon
                 this.Die();
             }
         }
-
+        /// <summary>
+        /// Kills the hero
+        /// </summary>
         public void Die()
         {
             isAlive = false;
             isVisible = false;
             rectangle = new Rectangle(0, 0, 0, 0);
         }
-
+        /// <summary>
+        /// Handles hero movement
+        /// </summary>
+        /// <param name="direction"></param>
         public virtual void Move(int direction)
         {
             bool collision = false;

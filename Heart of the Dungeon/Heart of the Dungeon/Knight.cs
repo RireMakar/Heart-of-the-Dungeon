@@ -25,7 +25,7 @@ namespace Heart_of_the_Dungeon
             this.UpdateAttackGrid();
         }
 
-        public override void UpdateAttackGrid()
+        public override void UpdateAttackGrid()         // yeah I know this code is hella ugly but it works and I don't wanna deal with making it prettier
         {
             attackGrid = new AttackSpace[5, 5] {  
                                                 {null, null, null, null, null},

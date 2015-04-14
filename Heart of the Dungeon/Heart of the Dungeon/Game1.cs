@@ -24,8 +24,6 @@ namespace Heart_of_the_Dungeon
         Random rand;
         #endregion Attributes
 
-        // temp attributes (for testing, delete when done)
-
 
         #region Constructor
         public Game1()
@@ -55,12 +53,12 @@ namespace Heart_of_the_Dungeon
 
             mapList = new List<Map>();
 
-            stateStack = new Stack<GameState>();
+            stateStack = new Stack<GameState>();        // sets the initial gamestate to be the game itself
 
             base.Initialize();
         }
 
-        protected override void LoadContent()
+        protected override void LoadContent()       // loads textures and shiz and adds them to the texturedictionary located in GlobalVariables
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -83,6 +81,7 @@ namespace Heart_of_the_Dungeon
             GlobalVariables.textureDictionary.Add("targetImage", Content.Load<Texture2D>("targetImage"));
             GlobalVariables.textureDictionary.Add("spawnSpace", Content.Load<Texture2D>("spawnSpace"));
             GlobalVariables.textureDictionary.Add("dungeonImage", Content.Load<Texture2D>("dungeonImage"));
+            GlobalVariables.textureDictionary.Add("heart", Content.Load<Texture2D>("heart"));
 
             MapHandler mapHandler = new MapHandler();
             mapHandler.LoadMap("Maps\\Map01.txt");
@@ -102,7 +101,7 @@ namespace Heart_of_the_Dungeon
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            stateStack.Peek().Update();
+            stateStack.Peek().Update(); // updates the current gamestate
 
             base.Update(gameTime);
         }
@@ -112,7 +111,7 @@ namespace Heart_of_the_Dungeon
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
-            stateStack.Peek().Draw(spriteBatch);
+            stateStack.Peek().Draw(spriteBatch);    // draws the current gamestate
             spriteBatch.End();
 
             base.Draw(gameTime);

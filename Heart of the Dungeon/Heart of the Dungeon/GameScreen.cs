@@ -26,8 +26,19 @@ namespace Heart_of_the_Dungeon
         private string state;
         private List<Wall> wallList;
         private List<Rectangle> spawnList;
+        private List<Heart> heartList;
+        private int dungeonHealth;
 
         // properties
+        public int DungeonHealth
+        {
+            get { return dungeonHealth; }
+            set { dungeonHealth = value; }
+        }
+        public List<Heart> HeartList
+        {
+            get { return heartList; }
+        }
         public List<Monster> MonsterList
         {
             get { return monsterList; }
@@ -51,6 +62,12 @@ namespace Heart_of_the_Dungeon
             map = mp;
             wallList = map.WallList;
             spawnList = map.SpawnList;
+            heartList = map.HeartList;
+            foreach (Heart h in heartList)
+            {
+                h.gameScreen = this;
+            }
+            dungeonHealth = heartList.Count;
             mainFont = GlobalVariables.mainFont;
             knight = new Knight(GlobalVariables.textureDictionary["knight"], new Rectangle(25 * 32, 12 * 32, 32, 32), this);
             thief = new Thief(GlobalVariables.textureDictionary["thief"], new Rectangle(25 * 32, 11 * 32, 32, 32), this);
@@ -66,12 +83,15 @@ namespace Heart_of_the_Dungeon
         }
 
         // methods
+        /// <summary>
+        /// Updates the game
+        /// </summary>
         public override void Update()
         {
             KeyboardState newState = Keyboard.GetState();
             if (oldState.IsKeyUp(Keys.Enter) && newState.IsKeyDown(Keys.Enter))
             {
-                this.NextTurn();
+                this.NextTurn();    
             }
 
             switch (currentTurn)
@@ -106,7 +126,10 @@ namespace Heart_of_the_Dungeon
 
             oldState = newState;
         }
-
+        /// <summary>
+        /// Draws the game with the specified spritebatch
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             map.Draw(spriteBatch);
@@ -114,16 +137,25 @@ namespace Heart_of_the_Dungeon
             thief.Draw(spriteBatch);
             mage.Draw(spriteBatch);
             dungeon.Draw(spriteBatch);
+            foreach (Heart h in heartList)
+            {
+                h.Draw(spriteBatch);
+            }
             spriteBatch.DrawString(mainFont, "Turn: " + currentTurn + "   Move Points: " + movePoints + "   State: " + state + 
                 "\nKnight Health: " + knight.Health + "  Thief Health: " + thief.Health + "  Mage Health: " + mage.Health +
                 "\nDungeon State: " + dungeon.CurrentState + "   Dungeon Spawn Points: " + dungeon.SpawnPoints, new Vector2(32, 16), Color.White);
         }
-
-        private void EndGame()
+        /// <summary>
+        /// Ends the game
+        /// </summary>
+        private void EndGame()      // end the game (expand later, it just closes for now)
         {
-
+            Environment.Exit(0);
         }
 
+        /// <summary>
+        /// Handles turn order
+        /// </summary>
         private void NextTurn()
         {
             int lifeCount = 0;
@@ -132,7 +164,7 @@ namespace Heart_of_the_Dungeon
                 if (h.IsAlive)
                     lifeCount++;
             }
-            if (lifeCount == 0)
+            if (lifeCount == 0 || dungeonHealth == 0)
                 this.EndGame();
             switch(currentTurn)
             {

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Heart_of_the_Dungeon
 {
-    class SelectionSpace : GamePiece
+    class SelectionSpace : GamePiece        // this is essentially the dungeon's cursor
     {
         // constructor
 
